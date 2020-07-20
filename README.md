@@ -20,6 +20,8 @@ To test Windows Sysmon CreateRemoteThread make sure Sysmon is installed on the m
 </Sysmon>
 ```
 
+**Note:** This Sysmon config is from Olaf Hartong's sysmon-modular and can be found here https://github.com/olafhartong/sysmon-modular/blob/version-8/8_create_remote_thread/include_dll_injection.xml
+
 Load this config file with the following command.
 
 ```powershell
