@@ -48,5 +48,5 @@ func DLLInjection(pid int16, dll string) {
 	if err != nil {
 		log.Fatalf("CreateRemoteThread %v", err)
 	}
-	fmt.Println("Remote thread with id %v created", threadID)
+	fmt.Printf("Remote thread with ID %v created\n", threadID)
 }
