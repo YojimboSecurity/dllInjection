@@ -41,8 +41,9 @@ var rootCmd = &cobra.Command{
 	Short: "DLL Injection POC",
 	Long: `I wrote this to test Sysmon Create Remote Thread EventID 8
 
-To test Sysmon EventID 8 copy the example below to a file such as sysmon_config.xml 
-and load it Sysmon.exe -c sysmon_config.xml
+To test Sysmon EventID 8 copy the example below to a file such as 'sysmon_config.xml' 
+and load it 'Sysmon.exe -c sysmon_config.xml'. Run 'Get-Process svchost' to list
+svchost process and chose one of the PIDs.
 
 <Sysmon schemaversion="4.1">
 	<EventFiltering>
@@ -54,6 +55,9 @@ and load it Sysmon.exe -c sysmon_config.xml
 	   </CreateRemoteThread>
    </EventFiltering>
  </Sysmon>
+
+Example:
+	dllInjection.exe -p 2688 -d C:\Windows\System32\dbghelp.dll 
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
