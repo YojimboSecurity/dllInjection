@@ -24,26 +24,41 @@ import (
 	"fmt"
 	"os"
 
+	"git.yojimbosecurity.com/dllInjection/src"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var cfgFile string
+var pid int16
+var dllPath string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "dllInjection",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "DLL Injection POC",
+	Long: `I wrote this to test Sysmon Create Remote Thread EventID 8
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+To test Sysmon EventID 8 copy the example below to a file such as sysmon_config.xml 
+and load it Sysmon.exe -c sysmon_config.xml
+
+<Sysmon schemaversion="4.1">
+	<EventFiltering>
+	   <CreateRemoteThread onmatch="include">
+		   <StartFunction name="technique_id=T1055,technique_name=Process Injection" condition="contains">LoadLibrary</StartFunction>
+		   <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\rundll32.exe</TargetImage>
+		   <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\svchost.exe</TargetImage>
+		   <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\System32\sysmon.exe</TargetImage>
+	   </CreateRemoteThread>
+   </EventFiltering>
+ </Sysmon>
+`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	//	Run: func(cmd *cobra.Command, args []string) { },
+	Run: func(cmd *cobra.Command, args []string) { 
+		src.DLLInjection(pid, dllPath)
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -65,7 +80,9 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	//rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().StringVarP(&dllPath, "dll-path", "d", "", "Path to DLL to be injected")
+	rootCmd.Flags().Int16VarP(&pid, "pid", "p", 0, "PID of process to inject DLL into")
 }
 
 // initConfig reads in config file and ENV variables if set.
