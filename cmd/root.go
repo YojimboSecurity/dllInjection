@@ -22,6 +22,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"git.yojimbosecurity.com/dllInjection/src"
@@ -56,7 +57,13 @@ and load it Sysmon.exe -c sysmon_config.xml
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) { 
+	Run: func(cmd *cobra.Command, args []string) {
+		if pid == 0 {
+			log.Fatalln("[!] Missing PID")
+		}
+		if dllPath == "" {
+			log.Fatalln("[!] Missing DLL Path")
+		} 
 		src.DLLInjection(pid, dllPath)
 	},
 }
