@@ -9,23 +9,23 @@ import (
 	"github.com/contester/runlib/win32"
 )
 
-const PROCESS_ALL_ACCESS = 0x1F0FFF
+const processAllAccess = 0x1F0FFF
 
-// const PAGE_READWRITE = 0x04
-const Virtual_Mem = 0x1000 | 0x2000
+const virtualMem = 0x1000 | 0x2000
 
+// DLLInjection takes a pid and injects the dll into it with createRemoteThread
 func DLLInjection(pid int16, dll string) {
 	fmt.Println("Start")
 
 	dllLen := uint32(len(dll))
 	unsPointer := unsafe.Pointer(&dll)
 
-	handle, err := syscall.OpenProcess(PROCESS_ALL_ACCESS, false, uint32(pid))
+	handle, err := syscall.OpenProcess(processAllAccess, false, uint32(pid))
 	defer syscall.CloseHandle(handle)
 	if err != nil {
 		log.Fatalf("OpenProcess %v", err)
 	}
-	argAddress, err := win32.VirtualAllocEx(handle, 0, dllLen, Virtual_Mem, syscall.PAGE_READWRITE)
+	argAddress, err := win32.VirtualAllocEx(handle, 0, dllLen, virtualMem, syscall.PAGE_READWRITE)
 	if err != nil {
 		log.Fatalf("VirtualAllocEx %v", err)
 	}
