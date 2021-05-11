@@ -25,7 +25,7 @@ import (
 	"log"
 	"os"
 
-	"git.yojimbosecurity.com/dllInjection/src"
+	"dllInjection/src"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

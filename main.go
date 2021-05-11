@@ -20,7 +20,7 @@
 
 package main
 
-import "git.yojimbosecurity.com/dllInjection/cmd"
+import "dllInjection/cmd"
 
 func main() {
 	cmd.Execute()

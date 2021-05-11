@@ -1,4 +1,4 @@
-module git.yojimbosecurity.com/dllInjection
+module dllInjection
 
 go 1.14
 
