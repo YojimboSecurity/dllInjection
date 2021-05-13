@@ -25,7 +25,7 @@ jobs:
         run: golint -set_exit_status $(go list ./... | grep -v /vendor/)
 
       - name: Test
-        run: go test -v $(go list ./... | grep -v /vendor/)
+        run: go test -v ./...
 
   Build:
     runs-on: windows-latest
