@@ -1,2 +1,2 @@
-go.sum
-dllInjection.exe
+bin
+vendor
