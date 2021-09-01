@@ -34,9 +34,9 @@ func DLLInjection(pid int16, dll string) {
 		log.Fatalf("WriteProcessMemory %v", err)
 	}
 
-	k32uint := syscall.StringToUTF16Ptr("kernel32.dll")
+	kernel32 := "kernel32.dll"
 
-	hKernel32, err := win32.GetModuleHandle(k32uint)
+	hKernel32, err := win32.GetModuleHandle(kernel32)
 	if err != nil {
 		log.Fatalf("GetModuleHandle %v", err)
 	}
