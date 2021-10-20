@@ -91,7 +91,7 @@ After running `dllInjection.exe` you should see an event that looks like the fol
       <Data Name="UtcTime">2020-07-20 19:00:02.974</Data>
       <Data Name="SourceProcessGuid">{32162397-E9B2-5F15-D517-E60200000000}</Data>
       <Data Name="SourceProcessId">9468</Data>
-      <Data Name="SourceImage">\\vboxsvr\go\src\git.yojimbosecurity.com\dllInjection\dllInjection.exe</Data>
+      <Data Name="SourceImage">\\vboxsvr\go\dllInjection\git.yojimbosecurity.com\dllInjection\dllInjection.exe</Data>
       <Data Name="TargetProcessGuid">{32162397-3369-5F13-63CA-030000000000}</Data>
       <Data Name="TargetProcessId">2688</Data>
       <Data Name="TargetImage">C:\Windows\System32\svchost.exe</Data>

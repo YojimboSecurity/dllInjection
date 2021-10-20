@@ -25,7 +25,7 @@ import (
 	"log"
 	"os"
 
-	"dllInjection/src"
+	"dllInjection/dllInjection"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -67,8 +67,8 @@ Example:
 		}
 		if dllPath == "" {
 			log.Fatalln("[!] Missing DLL Path")
-		} 
-		src.DLLInjection(pid, dllPath)
+		}
+		dllInjection.DLLInjection(pid, dllPath)
 	},
 }
 
